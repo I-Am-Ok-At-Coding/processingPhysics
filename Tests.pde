@@ -34,7 +34,34 @@ void testTwoBoxes() {
   a.angularV.set(0,0,radians(10));
   a.angularV.set(0,0,radians(-40));
 }
-
+void testBoxAndMeteorF() {
+  println("testBoxAndMeteorF()");
+  reset();
+  bodies.clear();
+  
+  BodyPolygon a = addBox(30*4,20*4,5);
+  BodyPolygon b = addMeteorConsistent(6, 40, 10);
+  a.position.set(width/2-100,height/2-15);
+  b.position.set(width/2+100,height/2);
+  a.velocity.set(40,0);
+  b.velocity.set(-15,0);
+  a.angularV.set(0,0,radians(10));
+  a.angularV.set(0,0,radians(180));
+}
+void testBoxAndMeteorS() {
+  println("testBoxAndMeteorS()");
+  reset();
+  bodies.clear();
+  
+  BodyPolygon a = addBox(30*4,20*4,5);
+  BodyPolygon b = addMeteorConsistent(6, 50, 0);
+  a.position.set(width/2-100,height/2-15);
+  b.position.set(width/2+100,height/2);
+  a.velocity.set(40,0);
+  b.velocity.set(-15,0);
+  a.angularV.set(0,0,radians(10));
+  a.angularV.set(0,0,radians(180));
+}
 void testTwoCircles() {
   println("testTwoCircles()");
   reset();
@@ -156,6 +183,26 @@ BodyPolygon addMeteor(float rMin,float rMax,float m) {
     float d = random(rMin,rMax);
     b.points.add(new PVector(cos(rad)*d,sin(rad)*d));
   }
+  b.updateRadius();
+  b.updateShape();
+  b.setMass(m);
+
+  return b;
+}
+BodyPolygon addMeteorWithPoint(float m,int x, int y) {
+  println("addMeteorWithPoint()");
+  BodyPolygon b = new BodyPolygon();
+  bodies.add(b);
+  int count = 7;
+  int d=30;
+  b.points.add(new PVector(x,y));
+  for(int i=0;i<count;++i) {
+    float rad = PI*2*(float)i/(float)count;
+    //float d = random(rMin,rMax);
+      d+=10;
+        b.points.add(new PVector(cos(rad)*d,sin(rad)*d));
+  }
+  
   b.updateRadius();
   b.updateShape();
   b.setMass(m);
