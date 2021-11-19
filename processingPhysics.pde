@@ -34,7 +34,9 @@ void setup() {
   d1.addItem("Two Boxes",5);
   d1.addItem("One Box And One Circle Corner Hit",6);
   d1.addItem("Stacked Boxes",7);
-    
+  d1.addItem("Box And Meteor Failed",8);
+  d1.addItem("Box And Meteor Successful",9);
+  
   camera.set(width/2,height/2,1);
   //camera.set(0,0,1);
   noFill();
@@ -62,6 +64,8 @@ void controlEvent(ControlEvent theEvent) {
       case 5:  testTwoBoxes();  break;
       case 6:  testOneBoxAndOneCircleCornerHit();  break;
       case 7:  testStackedBoxes();  break;
+      case 8:  testBoxAndMeteorF();  break;
+      case 9:  testBoxAndMeteorS();  break;
       default:  println("ERROR: controlEvent() undefined test.");  break;
       }
     }
